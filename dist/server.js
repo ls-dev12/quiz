@@ -1,6 +1,6 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
-import { Quiz } from './routes/quiz.js';
+import { Quiz } from './routes/quiz';
 const app = Fastify({
     logger: true
 });
