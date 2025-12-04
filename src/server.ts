@@ -1,24 +1,27 @@
-import Fastify from 'fastify'
-import cors from '@fastify/cors'
-import { Quiz } from './routes/quiz'
+import Fastify from "fastify";
+import cors from "@fastify/cors";
+import { Quiz } from "./routes/quiz";
 
 const app = Fastify({
-  logger: true
-})
+  logger: true,
+});
 
 app.register(cors, {
-  origin: '*',
-  methods: ['POST', 'OPTIONS']
-})
+  origin: "*",
+  methods: ["POST", "OPTIONS"],
+});
 
-app.register(Quiz)
+app.register(Quiz);
 
 const start = async () => {
   try {
-    await app.listen({ port: Number(process.env.PORT) || 3333 })
+    await app.listen({
+      port: Number(process.env.PORT) || 3333,
+      host: "0.0.0.0", // <- permite conexões externas
+    });
   } catch (err) {
-    app.log.error(err)
-    process.exit(1)
+    app.log.error(err);
+    process.exit(1);
   }
-}
-start()
+};
+start();
